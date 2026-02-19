@@ -1,0 +1,30 @@
+const express = require("express");
+const router = express.Router();
+const adminController = require("../controllers/adminController");
+const auth = require("../middleware/authMiddleware");
+const adminAuth = require("../middleware/adminMiddleware");
+
+// ==================== Existing Routes ====================
+// All routes are protected with auth and adminAuth middleware
+router.get("/pending-tests", auth, adminAuth, adminController.getPendingTests);
+router.post("/evaluate", auth, adminAuth, adminController.evaluateTest);
+
+// ==================== Question Management Routes ====================
+// All routes are protected with auth and adminAuth middleware
+
+// Add new question
+router.post("/questions", auth, adminAuth, adminController.addQuestion);
+
+// Get all questions with optional filters (stream, level, type)
+router.get("/questions", auth, adminAuth, adminController.getQuestions);
+
+// Get single question by ID
+router.get("/questions/:id", auth, adminAuth, adminController.getQuestionById);
+
+// Update question
+router.put("/questions/:id", auth, adminAuth, adminController.updateQuestion);
+
+// Delete question
+router.delete("/questions/:id", auth, adminAuth, adminController.deleteQuestion);
+
+module.exports = router;
