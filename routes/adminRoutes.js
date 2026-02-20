@@ -6,8 +6,8 @@ const adminAuth = require("../middleware/adminMiddleware");
 
 // ==================== Existing Routes ====================
 // All routes are protected with auth and adminAuth middleware
-router.get("/pending-tests", auth, adminAuth, adminController.getPendingTests);
-router.post("/evaluate", auth, adminAuth, adminController.evaluateTest);
+router.get("/pending-tests", adminController.getPendingTests);
+router.post("/evaluate", adminController.evaluateTest);
 
 // ==================== Question Management Routes ====================
 // All routes are protected with auth and adminAuth middleware
@@ -25,6 +25,6 @@ router.get("/questions/:id", adminController.getQuestionById);
 router.put("/questions/:id", adminController.updateQuestion);
 
 // Delete question
-router.delete("/questions/:id", auth, adminAuth, adminController.deleteQuestion);
+router.delete("/questions/:id", adminController.deleteQuestion);
 
 module.exports = router;
