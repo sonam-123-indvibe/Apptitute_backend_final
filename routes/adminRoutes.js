@@ -13,16 +13,16 @@ router.post("/evaluate", auth, adminAuth, adminController.evaluateTest);
 // All routes are protected with auth and adminAuth middleware
 
 // Add new question
-router.post("/questions", auth, adminAuth, adminController.addQuestion);
+router.post("/questions",  adminController.addQuestion);
 
 // Get all questions with optional filters (stream, level, type)
-router.get("/questions", auth, adminController.getQuestions);
+router.get("/questions", adminController.getQuestions);
 
 // Get single question by ID
-router.get("/questions/:id", auth, adminAuth, adminController.getQuestionById);
+router.get("/questions/:id", adminController.getQuestionById);
 
 // Update question
-router.put("/questions/:id", auth, adminAuth, adminController.updateQuestion);
+router.put("/questions/:id", adminController.updateQuestion);
 
 // Delete question
 router.delete("/questions/:id", auth, adminAuth, adminController.deleteQuestion);
