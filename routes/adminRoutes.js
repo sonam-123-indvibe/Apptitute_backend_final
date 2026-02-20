@@ -16,7 +16,7 @@ router.post("/evaluate", auth, adminAuth, adminController.evaluateTest);
 router.post("/questions", auth, adminAuth, adminController.addQuestion);
 
 // Get all questions with optional filters (stream, level, type)
-router.get("/questions", auth, adminAuth, adminController.getQuestions);
+router.get("/questions", auth, adminController.getQuestions);
 
 // Get single question by ID
 router.get("/questions/:id", auth, adminAuth, adminController.getQuestionById);
