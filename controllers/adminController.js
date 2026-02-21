@@ -12,6 +12,40 @@ exports.getPendingTests = async (req, res) => {
   }
 };
 
+exports.submitWrittenTest = async (req, res) => {
+
+  try {
+
+    const { userId, stream, level, answers, score } = req.body;
+
+    if (!answers || answers.length === 0) {
+      return res.status(400).json({ error: "No written answers found" });
+    }
+
+    const newAttempt = new TestAttempt({
+      userId,
+      stream,
+      level,
+      answers,
+      score,
+      status: "pending"
+    });
+
+    await newAttempt.save();
+
+    res.status(200).json({
+      message: "Written Test Submitted For Admin Evaluation"
+    });
+
+  } catch (err) {
+
+    console.error("Written Submission Error:", err.message);
+    res.status(500).json({ error: err.message });
+
+  }
+
+};
+
 exports.evaluateTest = async (req, res) => {
   try {
     const { attemptId, manualScore } = req.body;

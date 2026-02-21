@@ -8,6 +8,7 @@ const adminAuth = require("../middleware/adminMiddleware");
 // All routes are protected with auth and adminAuth middleware
 router.get("/pending-tests", adminController.getPendingTests);
 router.post("/evaluate", adminController.evaluateTest);
+router.post("/submit-written", adminController.submitWrittenTest);
 
 // ==================== Question Management Routes ====================
 // All routes are protected with auth and adminAuth middleware
